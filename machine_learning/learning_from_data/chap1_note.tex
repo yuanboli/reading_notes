@@ -1,0 +1,155 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc} % Para caracteres en español
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{multirow,booktabs}
+\usepackage[table]{xcolor}
+\usepackage{fullpage}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{calc}
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage[margin=3cm]{geometry}
+\usepackage{amsmath}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+\usepackage{empheq}
+\usepackage{framed}
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\colorlet{shadecolor}{orange!15}
+\parindent 0in
+\parskip 12pt
+\geometry{margin=1in, headsep=0.25in}
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{reg}{Rule}
+\newtheorem{exer}{Exercise}
+\newtheorem{note}{Note}
+\begin{document}
+\setcounter{section}{0}
+\title{Chapter 1 The Learning Problem Notes}
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE \bf Chapter 1 Notes}\\
+11.9.2017
+\end{center}
+\section{The Learning Problem}
+\subsection{Problem Setup}
+\subsubsection{Components of Learning}
+Notation Convensions:
+\begin{itemize}[noitemsep,topsep=0pt]
+    \itemsep-1em
+    \item \textit{x}: input\\
+    \item \textit{f}: $\textit{X} \rightarrow \textit{Y}$: unknown target function, where \textit{X} is the input space, and \textit{Y} is the output space.\\
+    \item \textit{D}: data set of input-output examples $(\mathbf{x_1}, y_1), \ldots, (\mathbf{x_N}, y_N)$, where $y_n = f(\mathbf{x_n})$ for n = 1, \ldots, N. \\
+    \item \textit{H}: hypothesis set \textit{H}. There is a learning algorithm that uses the data set \textit{D} to pick a formula $\textit{g}: \textit{X} \rightarrow \textit{Y}$ that approximates \textit{f}. The algorithm chooses \textit{g} from a set of candidate formulas under consideration, which we call the hypothesis set \textit{H}.
+\end{itemize}
+
+
+\subsubsection{A Simple Learning Model}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item \textit{Learning model}: The hypothesis set and learning algorithm we choose are refered to informmally as the learning model.
+\end{itemize}
+
+\subsubsection{Learning versus Design}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item The main differences between the learning approach and the design approach is the role that data plays. In the design approach, the problem is well-specified and one can analytically derive \textit{f} without the need to see any data. In the learning approach, the problem is much less specified, and one needs data to pin down what \textit{f} is.
+\end{itemize}
+
+\subsection{Types of Learning}
+\subsubsection{Supervised Learning}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item Description: the training data contains explicitly examples of what the correct output should be for given inputs. Example: hand-written digit recognition problem.
+    \item two types of supervised learning:
+    \begin{itemize}[noitemsep, topsep=0pt]
+        \item \textbf{\textit{Active learning}}: the data set is acquired through queries that we make. Thus, we get to choose a point \textbf{x} in the input space, and the supervisor reports to us the target value for \textbf{x}. As you can see, this opens the possibility for strategic choice of the point \textbf{x} to maximize its information value, similar to asking a strategic question in a game of 20 questions.
+        \item \textbf{\textit{Online learning}}: The data set is given to the algorithm one example at a time. This happens when we have streaming data that the algorithm has to process 'on the run'. We should note that online learning can be used in different paradigms of learning, not just in supervised learning.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Reinforcement Learning}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item The training data does not contain the correct output, but instead some possible output and a measure of how good a output is. The example does not specify how good other outputs would have been for this particular input.
+    \item Reinforcement learning is very useful in some circumstances, for instance, learning how to play chess. It is hard to find the ``correct'' solution. However, in reinforcement learning setting, all you need is to take some action and report how well things goes, then you have a training example.
+\end{itemize}
+
+\subsubsection{Unsupervised Learning}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item The training data does not have any output information at all.
+    \item The unsupervised learning can be viewed as the task of spontaneously finding patterns and structure in input data.
+\end{itemize}
+
+\subsubsection{Other Views of Learning}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item \textit{Machine Learning}: the main fields that dedicated to the subject is called machine learning
+    \item \textit{Statistics}: shares the basic premise of learning from data. Statistics make restrict assumptions and analyze it in great detail.
+    \item \textit{Data Mining}: Data mining is a practical field that focuses on finding patterns, correlation, or anomalies in large relational databases. More emphasis on data analysis than on prediction. Because databases are usually huge, computational issues are often critical in data mining.
+\end{itemize}
+
+\subsection{Is Learning Feasible?}
+\subsubsection{Outside the Data Set}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item Does the data set \textit{D} tell us anything outside of \textit{D} that we does not know before? If the answer is yes, we have learned \textit{something}. If not, we can conclude that learning is not feasible.
+\end{itemize}
+
+\subsubsection{Probability to the Rescue}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item Example:
+    \begin{itemize}[noitemsep, topsep=0pt]
+        \item We pick a random sample of \textit{N} independent marbles (with replacement) from the bin, and observe the fraction $\nu$ of red marbles within the sample. We denote the probability of picking a red marble as $\mu$
+        \item To quantify the relationship between $\nu$ and $\mu$, we use a simple bound called the \textit{Hoeffding Inequality}. It states that for any sample size \textit{N},
+        \begin{equation}
+            \mathbb{P}[|\nu - \mu| > \epsilon] \leq 2e^{-2\epsilon^2N}  \text{ for any $\epsilon > 0$}
+        \end{equation}
+        Here, $\mathbb{P}$ denotes the probability of an event. In this case, it is exponentially unlikely that $\nu$ will deviate from $\mu$ by more than our ``tolerance'' $\epsilon$.
+        \item To connect the bin model to the pearning problem, the unknown $\mu$ here can be simply viewed as the function \textit{f}: $\textit{X} \rightarrow \textit{Y}$.
+        \item The error rate within the sample, which corresponds to $\nu$ in the bin model, will be called the \textit{in-sample error},
+        \begin{equation}
+        \begin{aligned}
+            E_{in}(h) &= \text{(fraction of \textit{D} where \textit{f} and \textit{h} disagree)}\\
+                      &= \frac{1}{N} \sum_{n=1}^{N} [[h(x_n) \neq f(x_n)]]
+        \end{aligned}
+        \end{equation}
+        where $[[\text{statement} = 1]]$ if the statement is true and $= 0$ if false.
+    \end{itemize}
+\end{itemize}
+
+
+\subsubsection{Feasibility of Learning}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item If we insist on a deterministic answer, which means that \textit{D} tells us something certain about \textit{f} outside of \textit{D}, then the answer is no.
+    \item If we accept a probabilistic answer, which means that \textit{D} tells us something likely about \textit{f} outside of \textit{D}, then the answer if yes.
+    \item Notice: There are two feasibility problem: first, can we make sure that $E_{out}(g)$ is close enough to $E_{in}(g)$. Then, can we make $E_{in}(g)$ small enough.
+    \item \textbf{\textit{The complexity of H}}. If the number of hypotheses \textit{M} goes up, we run more risk that $E_{in}(g)$ will be a poor estimator of $E_{out}(g)$. \textit{M} can be thought of as a measure of the `complexity' of the hypothesis set \textit{H} that we use.
+    \item \textbf{\textit{The complexity of f}}. Intuitively, a complex target function \textit{f} should be harder to learn than a simple \textit{f}.
+\end{itemize}
+
+\subsection{Error and Noise}
+\subsubsection{Error Measures}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item 
+    \begin{equation}
+        \textit{Error} = E(h,f)
+    \end{equation}
+    where $E(h,f)$ is based on the entirety of $h$ and $f$, it is almost universally defined based on the errorss on individual input points \textbf{x}.
+    \item Different error measure may affects the outcome of the learning process. Different error measures may lead to different choices of the final hypothesis, even if the target and the data are the same, since the value of a particular error measure may be samll while the value of another error measure in the same situation is large.
+\end{itemize}
+
+\subsubsection{Noisy Targets}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item The function itself may be noisy, meaning that it is not deterministic. In this case, we may have a target \textit{distribution} $P(y|\textbf{x})$ instead of a target function $y = f(x)$.
+    \item Another view of target function is that a noisy target is a deterministic target plus added noise.
+    \item In noisy target setting, $E_{in}$ itself will likely be worse so it is hard to fit the noise.
+\end{itemize}
+
+
+\end{document}
