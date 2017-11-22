@@ -1,0 +1,70 @@
+\usepackage[headings]{fullpage}
+\usepackage{amssymb,amsthm,amsfonts,amsmath}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+
+\hypersetup{
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=black
+}
+
+\setlist{nolistsep}
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\setlength{\textheight}{23truecm}
+\setlength{\textwidth}{17.0truecm}
+\setlength{\voffset}{-.5cm}
+\setlength{\oddsidemargin}{0truecm}
+\setlength{\evensidemargin}{0truecm}
+
+
+
+
+%space symbol
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\functo}{\rightarrow}
+
+
+\newtheoremstyle{break}
+    {\topsep}{\topsep}%
+    {\upshape}{}%
+    {\bfseries}{}%
+    {\newline}{}%
+\theoremstyle{break}
+
+
+%operator
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+
+
+
+%set symbol
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+\newcommand{\interior}[1]{\mathring{#1}}
+
+
+%theorem
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{mydef}[theorem]{Definition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{property}{property}[theorem]
+
+\newtheorem{problem}{problem}
+
+
+%font
+\renewcommand{\it}[1]{\textit{#1}}
+\renewcommand{\bf}[1]{\textbf{#1}}
+% curly cue font is \mathcal
+% super fancy curly cue is \mathscr

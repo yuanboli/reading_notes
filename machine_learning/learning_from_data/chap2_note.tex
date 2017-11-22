@@ -1,0 +1,44 @@
+\chapter{Training Versus Testing}
+
+\section{Training versus Testing}
+\subsection{Theory of Generalization}
+\begin{itemize}[noitemsep, topsep=0pt]
+    \item The out-of-sample error $E_{out}$ measures how well our training on \textit{D} has generalized to data that we have not seen before. It is based on the performance over the entire input space \textit{X}. If we want to estimate it, we should use unseen ``fresh'' data points.
+    \item The in sample error $E_{in}$, by contrast, is based on data points that have been used for training.
+    \item \textbf{\textit{Generalization error}}: the discrepancy between $E_{in}$ and $E_{out}$. Notice: sometime, `generalization error' is also used for another name of $E_{out}$, but not for this text. We have already provides a way to characterize the generalization error with a probabilistic bound in chapter 1,
+        \begin{equation}
+            \mathbb{P}[|E_{in}(g) - E_{out}(g)| > \epsilon] \leq 2Me^{-2e^2N},
+        \end{equation}
+        for any $\epsilon > 0$
+    \item The generalization error mentioned above can be rephrased as follows.
+        Pick a tolerance level $\delta$, for example, $\delta = 0.5$,
+        we assert with probability at least $1 - \delta$.
+        Then, we can get $\bb{P}[|E_{in}(g) - E_{out}(g)| > \epsilon] \le 2Me^{-2e^2N} \le \delta$.\\
+        Finally we can reach
+        \begin{equation} \label{Training Versus Testing: generalization bound}
+            E_{out}(g) \le E_{in}(g) + \sqrt{\frac{1}{2N} ln \frac{2M}{\delta}}.
+        \end{equation}
+        We refer to the type of inequality in the form \ref{Training Versus Testing: generalization bound}
+        as a \bf{\it{generalization bound}} because it bounds $E_{out}$ in terms of $E_{in}$
+    \item (accuracy upper bound) It is worth noticing that the other side of $|E_{out} - E_{in}| \le \epsilon$ also holds,
+        that is, $E_{out} \ge E_{in} - \epsilon$.
+        This is important for learning. 
+        The $E_{out} \ge E_{in} - \epsilon$ direction of the bound assures us that we couldn't do significantly better
+        if we have a relatively high $E_{in}$.
+    \item (limitation) The error bound $\sqrt{\frac{1}{2N} ln \frac{2M}{\delta}}$ in \ref{Training Versus Testing: generalization bound}
+        depends on $M$, the size of the hypothesis set $\mathcal{H}$. 
+        If $\mathcal{H}$ is a infinite set,
+        the bound will goes to infinity,
+        thus the bound becomes meaningless.
+        Unfortunately, almost all interesting hypothesis set $\mathcal{H}$ are infinite.
+    \item (The cause of the limitation)
+\end{itemize}
+
+
+
+
+
+
+
+
+
