@@ -31,7 +31,15 @@
         the bound will goes to infinity,
         thus the bound becomes meaningless.
         Unfortunately, almost all interesting hypothesis set $\mathcal{H}$ are infinite.
-    \item (The cause of the limitation)
+    \item (The cause of the limitation) We over-estimate the the probability using union bound. 
+        Let's denote $\mathcal{B}_m$ be ($\mathcal{B}$ad) event that ``$|E_{in}(h_m) - E_{out}(h_m)| > \epsilon$'',
+        Then our assumption
+        \begin{equation}
+            \bb{P}[\mathcal{B}_1 \bf{ or } \mathcal{B}_2 \bf{ or } \cdots \bf{ or }\mathcal{B}_M]
+            \le \bb{P}[\mathcal{B}_1] + \bb{P}[\mathcal{B}_2] + \cdots + \bb{P}[\mathcal{B}_M].
+        \end{equation}
+        The events $\bb{B}_1, \cdots, \bb{B}_M$ are more likely strongly overlapping,
+        so our estimate is bad enough in this case.
 \end{itemize}
 
 
